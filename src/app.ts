@@ -5,8 +5,6 @@ import router from './routes/index';
 import { Request, Response } from 'express';
 import winston from 'winston';
 import expressWinston from 'express-winston';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 export class App {
   private app: express.Application;

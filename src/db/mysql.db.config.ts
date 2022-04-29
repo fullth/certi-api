@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 export const development = {
   host: process.env.DATABASE_SPRINT_HOST,
   user: process.env.DATABASE_SPRINT_USER,

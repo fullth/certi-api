@@ -9,5 +9,4 @@ router.route('/')
   .post(verificationController.verify) 
   .patch(verificationController.cancelVerify);
 
-
 export default router;
