@@ -11,7 +11,7 @@ export class VerificationController {
   public verify = async (req: Request, res: Response) => {
     try { 
       const data: CreateVerificationDto = req.body;
-      const result = this.verificationService.verify(data);
+      const result = await this.verificationService.verify(data);
       res.status(200).send(result);
     } catch {
       res.status(400).send("Unknown exception.")
