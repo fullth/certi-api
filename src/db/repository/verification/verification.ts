@@ -19,8 +19,7 @@ export class VerificationRepository {
   public checkVerification = async (data: CreateVerificationDto) => {
       try {
         const [ rows ] = await db.promise().query(`
-          SELECT A.* FROM TEACHERS AS A INNER JOIN VERIFICATION AS B ON A.ID = B.TEACHER_ID
-           WHERE A.ID = ? AND B.TEACHER_ID = ?;
+          SELECT A.* FROM TEACHERS AS A INNER JOIN VERIFICATION AS B ON A.ID = B.TEACHER_ID WHERE A.ID = ? AND B.TEACHER_ID = ?;
         `, [data.teacherId, data.verificationId]);
         return JSON.parse(JSON.stringify(rows));
       } catch (err) {
@@ -32,9 +31,7 @@ export class VerificationRepository {
   public cancelVerify = async (data: CancelVerificationDto) => {
     try {
       const [ rows ] = await db.promise().query(
-        `UPDATE TEACHERS as A, VERIFICATION as B 
-            SET A.VERIFICATION = A.VERIFICATION - 1, A.VERIFICATION_YN = FALSE, B.CANCEL_REASON = ?
-          WHERE A.ID = ? AND B.ID = ? `, [data.cancelReason, data.teacherId, data.verificationId]);
+        "UPDATE TEACHERS as A, VERIFICATION as B SET A.VERIFICATION_CNT = A.VERIFICATION_CNT - 1, A.VERIFICATION_YN = FALSE, B.CANCEL_REASON = ? WHERE A.ID = ? AND B.ID = ?", [data.cancelReason, data.teacherId, data.verificationId]);
       return rows;
     } catch (err) {
       console.error(err);
