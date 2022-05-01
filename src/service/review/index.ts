@@ -1,5 +1,5 @@
 import { Inject, Service } from "typedi";
-import { ReviewRepository } from '../../db/repository/review/review';
+import { ReviewRepository } from '../../db/repository/review';
 import { CreateReviewDTO } from '../../dto/review/create.review.dto';
 
 @Service()

@@ -1,8 +1,8 @@
 import { Inject, Service } from "typedi";
-import { VerificationRepository } from '../../db/repository/verification/verification';
-import { CreateVerificationDto } from '../../dto/verification/create.verification.dto';
+import { VerificationRepository } from '../../db/repository/verification';
+import { VerificationDto } from '../../dto/verification/verification.dto';
 import { VerificationValidator } from './validator';
-import { CancelVerificationDto } from '../../dto/verification/cancel.verification.dto';
+import { CancelVerificationDto } from '../../dto/verification/cancel/cancel.verification.dto';
 
 @Service()
 export class VerificationService {
@@ -11,7 +11,7 @@ export class VerificationService {
     @Inject() private readonly verificationValidator: VerificationValidator
   ) {}
 
-  public verify = async (data: CreateVerificationDto) => {
+  public verify = async (data: VerificationDto) => {
     const result = await this.verificationValidator.isValidate(data);
     return result;
   };

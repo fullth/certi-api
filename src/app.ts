@@ -5,6 +5,7 @@ import router from './routes/index';
 import { Request, Response } from 'express';
 import winston from 'winston';
 import expressWinston from 'express-winston';
+import { Http } from 'winston/lib/winston/transports';
 
 export class App {
   private app: express.Application;
@@ -21,6 +22,7 @@ export class App {
   }
 
   private setMiddleware(): void {
+    //this.app.use(cors({ origin:  }));
     this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
