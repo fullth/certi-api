@@ -5,7 +5,7 @@ import router from './routes/index';
 import { Request, Response } from 'express';
 import winston from 'winston';
 import expressWinston from 'express-winston';
-import { Http } from 'winston/lib/winston/transports';
+import errorMiddleware from './middleware/error.middleware';
 
 export class App {
   private app: express.Application;
@@ -14,6 +14,7 @@ export class App {
     this.setMiddleware();
     this.setRoutes();
     this.setLogger();
+    this.setErrorHandling();
   }
 
   private setRoutes(): void {
@@ -26,6 +27,10 @@ export class App {
     this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+  }
+
+  private setErrorHandling() {
+    this.app.use(errorMiddleware);
   }
 
   private setLogger(): void {

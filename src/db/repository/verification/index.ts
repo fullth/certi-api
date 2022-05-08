@@ -23,11 +23,11 @@ export class VerificationRepository {
 
   public checkVerification = async (data: VerificationDto): Promise<VerificationInfo[]> => {
     try {
-      const rows = await db.promise().execute(`
+      const [ rows ] = await db.promise().execute(`
         SELECT A.* FROM TEACHERS AS A INNER JOIN VERIFICATION AS B ON A.ID = B.TEACHER_ID WHERE A.ID = ? AND B.TEACHER_ID = ?;
       `, [data.teacherId, data.verificationId]);
-      if(!rows[0]) return [];
-      else return rows; // error
+      if(!rows) return [];
+      else return rows as unknown as VerificationInfo[];
     } catch (err) {
       console.error(err);
       throw err;

@@ -1,6 +1,6 @@
 import { Service } from "typedi";
 import { connection as db } from "../../mysql.db.connection";
-import { CreateReviewDTO } from "../../../dto/review/create.review.dto";
+import { CreateReviewDTO } from "../../../dto/review";
 
 @Service()
 export class ReviewRepository {
