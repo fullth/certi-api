@@ -7,6 +7,6 @@ export class ReviewService {
   constructor(@Inject() private readonly reviewRepository: ReviewRepository) {}
 
   public create = async (data: CreateReviewDTO) => {
-    this.reviewRepository.create(data);
+    return this.reviewRepository.create(data);
   }
 }

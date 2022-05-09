@@ -1,5 +1,5 @@
 export interface CreateReviewDTO {
-  readonly certificationId: number;
+  readonly verificationId: number;
   readonly teacherId: number;
   readonly score: number;
   readonly review: string;
